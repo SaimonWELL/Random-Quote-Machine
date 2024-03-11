@@ -4,6 +4,9 @@ import {Component} from "react";
 import './App.css';
 
 class Wrapper extends Component{
+
+
+
   render() {
     return(
         <div id="wrapper">
@@ -22,7 +25,7 @@ class Wrapper extends Component{
                 <a className="button" id="tumblr-quote" target="_top">
                     <i className="fa fa-tumblr"></i>
                 </a>
-                <button className="button" id="new-quote"></button>
+                <button className="button" id="new-quote">New quote</button>
             </div>
           </div>
         </div>
