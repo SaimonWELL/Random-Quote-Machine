@@ -13,6 +13,8 @@
     clear: both;
     font-weight: 500;
     font-size: 1.75em;
+    opacity: 0;
+    transition: opacity 0.7s ease;
 }
 #quote-box .quote-text i {
     font-size: 1em;
@@ -63,5 +65,19 @@
 #quote-box .buttons .button#new-quote{
     float: right;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.text-opacity {
+    animation: fadeIn 1s ease; /* Применяем анимацию fadeIn с продолжительностью 1 секунда и функцией сглаживания ease */
+}
+
 
 

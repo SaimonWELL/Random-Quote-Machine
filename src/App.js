@@ -9,7 +9,9 @@ constructor(props) {
   super(props);
   this.state={
     data:null,
-    error:null
+    error:null,
+    index:0,
+    opacity:1
   };
 }
 
@@ -32,23 +34,47 @@ async fetchData(){
   }
 }
 
+newQuote = (min,max)=> {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    this.setState({opacity: 0})
+    setTimeout(()=>{
+        this.setState(({index})=>{
+            return {
+                index: Math.floor(Math.random() * (max - min + 1)) + min
+            }
+        })
+    },500)
+    setTimeout(() => {
+        this.setState({ opacity: 1 });
+    }, 500);
+
+}
+
+ async decreaseOpacity() {
+     this.setState({ opacity: 0 });
+     // Через определенный промежуток времени (например, 1 секунду) возвращаем прозрачность обратно к 1
+     setTimeout(() => {
+         this.setState({ opacity: 1 });
+     }, 2000);
+};
+
   render() {
-    const { data, error } = this.state;
-    let index = 0
+    const { data, error ,index, opacity} = this.state;
+
+
 
     return(
         <div id="wrapper">
           <div id="quote-box">
-            <div className="quote-text">
+            <div className="quote-text text-opacity" style={{opacity: opacity}}>
               <i className="fa fa-quote-left"></i>
               {error && <span id="text">Error:{error}</span>}
-              {data && <span id="text">{data[index].quote}</span>}
+              {data && <span id="text" className='' >{data[index].quote}</span>}
             </div>
-            <div className="quote-author">
+            <div className="quote-author ">
               {error && <span id="author">Error:{error}</span>}
               {data && <span id="author">- {data[index].author}</span>}
-
-
             </div>
             <div className="buttons">
                 <a className="button" id="tweet-quote" target="_top">
@@ -57,7 +83,10 @@ async fetchData(){
                 <a className="button" id="tumblr-quote" target="_top">
                     <i className="fa fa-tumblr"></i>
                 </a>
-                <button className="button" id="new-quote">New quote</button>
+                <button onClick={()=>{
+                    this.newQuote(0,data.length);
+                     }
+                } className="button " id="new-quote">New quote</button>
             </div>
           </div>
         </div>
