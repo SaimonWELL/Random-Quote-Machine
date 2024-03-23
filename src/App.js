@@ -62,7 +62,7 @@ async newQuote (min,max,colors) {
 
     const body = document.querySelector('body');
     const minColor = 0,
-          maxColor = colors.length
+          maxColor = colors.length-1
     this.setState({opacity: 0})
     await new Promise((resolve,reject)=>{
         setTimeout(()=>{
@@ -100,7 +100,7 @@ async newQuote (min,max,colors) {
         '#77B1A9',
         '#73A857'
     ];
-    let tt ='asdasd'
+
 
     return(
         <div id="wrapper">
